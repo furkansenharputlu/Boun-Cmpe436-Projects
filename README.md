@@ -1,1 +1,1 @@
-# Boun Cmpe436 Concurrent and Distributing Programming Projects
+# Boun Cmpe436 Concurrent and Distributed Programming Projects

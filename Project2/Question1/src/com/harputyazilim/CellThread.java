@@ -1,3 +1,6 @@
+// Furkan Şenharputlu // 2013400171 // furkan_senharputlu@hotmail.com
+// CMPE436-Assignment 2
+
 package com.harputyazilim;
 
 import javafx.util.Pair;
@@ -7,6 +10,7 @@ import java.util.ArrayList;
 public class CellThread extends Thread {
     private int i;
     private int j;
+    static int gen = 1;
 
     public CellThread(int i, int j) {
         this.i = i;
@@ -16,16 +20,17 @@ public class CellThread extends Thread {
 
     @Override
     public void run() {
-        Game.barrier.block(i,j);
-        for(int i=0;i<Game.maxGenerations;i++){
-            next();
-    }
+        Game.barrier.block(i, j); // Thread will wait until others come this point
+        for (int i = 0; i < Game.maxGenerations; i++) {
+            next(); // calculates next generation
+        }
     }
 
-    public void next()  {
+    public void next() {
 
         //condition 1 -> A 1 cell value stays 1 if exactly two or three neighbors are 1 valued.
         int next;
+
         int count = searchNeighbors(1);
         if (Game.grid[i][j] == 1) {
             if (count != 2 && count != 3) {
@@ -41,9 +46,32 @@ public class CellThread extends Thread {
                 next = 0;
             }
         }
-        Game.barrier.block(i,j);
-        Game.grid[i][j]=next;
-        Game.barrier.block(i,j);
+
+        Game.barrier.block(i, j);// Thread will wait until others come this point
+        Game.grid[i][j] = next;
+        Game.barrier.block(i, j);// Thread will wait until others come this point
+
+        // It prints every generation out to console
+        if (this.i == 0 && this.j == 0) {
+            System.out.println(gen + ".Generation");
+            gen++;
+            writeGeneration();
+            System.out.println();
+        }
+
+    }
+
+    public void writeGeneration() {
+        for (int i = 0; i < Game.M; i++) {
+            for (int j = 0; j < Game.N; j++) {
+                if (j == Game.N - 1) {
+                    System.out.print(String.valueOf(Game.grid[i][j]));
+                } else {
+                    System.out.print(Game.grid[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
 
     }
 

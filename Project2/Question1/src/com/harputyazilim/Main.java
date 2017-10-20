@@ -1,3 +1,6 @@
+// Furkan Şenharputlu // 2013400171 // furkan_senharputlu@hotmail.com
+// CMPE436-Assignment 2
+
 package com.harputyazilim;
 
 import java.io.*;

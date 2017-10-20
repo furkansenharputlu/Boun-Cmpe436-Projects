@@ -1,3 +1,6 @@
+// Furkan Şenharputlu // 2013400171 // furkan_senharputlu@hotmail.com
+// CMPE436-Assignment 2
+
 package com.harputyazilim;
 
 public class Main {
@@ -15,6 +18,7 @@ public class Main {
     }
 }
 
+// This an example thread
 class Runner implements Runnable {
     private Object obj1;
     private Object obj2;
@@ -33,7 +37,7 @@ class Runner implements Runnable {
                 e.printStackTrace();
             }
             System.out.println("This will be printed!");
-            synchronized (obj2) {
+            synchronized (obj2) { // All will wait for another to relase an object
                 System.out.println("This will not be printed because of Deadlock!");
             }
         }

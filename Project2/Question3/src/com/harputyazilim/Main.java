@@ -1,3 +1,6 @@
+// Furkan Şenharputlu // 2013400171 // furkan_senharputlu@hotmail.com
+// CMPE436-Assignment 2
+
 package com.harputyazilim;
 
 public class Main {
@@ -34,7 +37,7 @@ public class Main {
         t3.start();
 
         try {
-            t1.join();
+            t1.join(); // wait threads for complementing their jobs
             t2.join();
             t3.join();
         } catch (InterruptedException e) {
